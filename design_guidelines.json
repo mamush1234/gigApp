@@ -1,0 +1,163 @@
+{
+  "app_name": "GigPilot",
+  "personality": "7 Dark-First Utility DARK",
+  "personality_one_liner": "A high-contrast, tactical command center optimized for rapid decision-making behind the wheel.",
+  "color": {
+    "surface": "#0F1115",
+    "onSurface": "#FFFFFF",
+    "surfaceSecondary": "#1A1D24",
+    "onSurfaceSecondary": "#E2E8F0",
+    "surfaceTertiary": "#272B36",
+    "onSurfaceTertiary": "#94A3B8",
+    "surfaceInverse": "#FFFFFF",
+    "onSurfaceInverse": "#0F1115",
+    "brand": "#F97316",
+    "brandPrimary": "#F97316",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#C2410C",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#431407",
+    "onBrandTertiary": "#FDBA74",
+    "success": "#22C55E",
+    "onSuccess": "#000000",
+    "warning": "#EAB308",
+    "onWarning": "#000000",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "border": "#272B36",
+    "borderStrong": "#334155",
+    "divider": "#1A1D24",
+    "muted": "#64748B"
+  },
+  "typography": {
+    "displayFontFamily": "Barlow Condensed",
+    "textFontFamily": "IBM Plex Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Avoid tight clustering. Ensure minimum 48pt height for all touchable rows. Use md/lg spacing between modules to keep glanceability high.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "0",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": false,
+    "do's": [],
+    "dont's": [
+      "Do not use glass or blur effects on any screen. Use solid surface overlays for clarity and performance."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-blur",
+      "android": "solid surfaceSecondary",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Onboarding",
+      "purpose": "A sequential flow capturing preferences and permissions before launching into the app.",
+      "states": {
+        "loading": "Centered spinner",
+        "empty": "N/A",
+        "error": "Failed to save preferences, retry button."
+      },
+      "layout": "Full-bleed background image with a vertical gradient scrim (transparent to surface). Content at the bottom: Large title, clear description, and full-width bottom CTA pinned safely above home indicator."
+    },
+    {
+      "name": "Dashboard",
+      "purpose": "Main monitoring view showing status and the most recent evaluated offer.",
+      "states": {
+        "loading": "Skeleton loading of the offer card",
+        "empty": "Empty state illustration of a dark map/road, saying 'Monitoring active. Waiting for offers...'",
+        "error": "Connection lost, check permissions."
+      },
+      "layout": "Header shows monitoring toggle (Big, distinct state). Below it, today's stats (Earnings, Rides) in compact metric boxes. The center holds the 'Last Offer Card'—massive display of FARE, $/MILE, DISTANCE, structured as a modular card. Color-coded result tag (MATCH/REVIEW/NO MATCH) pinned prominently."
+    },
+    {
+      "name": "OfferResult",
+      "purpose": "Full screen overlay detailing why a specific ride matched or failed.",
+      "states": {
+        "loading": "Calculating score...",
+        "empty": "N/A",
+        "error": "Failed to parse offer details."
+      },
+      "layout": "Massive MATCH/NO MATCH/REVIEW header utilizing the respective success/error/warning colors. Giant metrics for Fare and $/Mile. A checklist below showing rules passed (green check) or failed (red cross). Sticky bottom CTA to 'Dismiss' or 'View Rules'."
+    },
+    {
+      "name": "Preferences",
+      "purpose": "A form-heavy screen where the driver configures their rule engine.",
+      "states": {
+        "loading": "Spinner",
+        "empty": "N/A",
+        "error": "Error saving settings."
+      },
+      "layout": "Segmented by categories: Earnings, Distance, Areas. Inputs are large and touch-friendly. Use tonal chips for Areas. Sticky Save CTA at the bottom."
+    },
+    {
+      "name": "Demo",
+      "purpose": "Test the rules engine against pre-defined or manual mock offers.",
+      "states": {
+        "loading": "Evaluating...",
+        "empty": "No mock offers loaded.",
+        "error": "Evaluation failed."
+      },
+      "layout": "List of 10+ predefined test offers using surfaceSecondary cards. Tapping one instantly slides up a bottom sheet with the OfferResult evaluation."
+    },
+    {
+      "name": "History",
+      "purpose": "A chronological log of all parsed offers and their match outcomes.",
+      "states": {
+        "loading": "Loading history...",
+        "empty": "No offers recorded yet.",
+        "error": "Could not load history database."
+      },
+      "layout": "A flush list view. Each row uses a dense but readable layout: Left side shows platform icon (U/L) and time. Center shows Fare and Route. Right edge has a thick 4px border color-coded (Green/Yellow/Red) indicating the match status."
+    }
+  ],
+  "images": {
+    "onboarding_hero": {
+      "url": "https://images.unsplash.com/photo-1619204715997-1367fe5812f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxlbXB0eSUyMHJvYWQlMjBuaWdodCUyMGRyaXZlciUyMGFic3RyYWN0JTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3OTMyMzQ3ODZ8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Empty night road illuminated by streetlights"
+    },
+    "dashboard_empty_state": {
+      "url": "https://images.unsplash.com/photo-1651833826115-7530e72ce504?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZGFyayUyMG1hcCUyMG5hdmlnYXRpb24lMjBiYWNrZ3JvdW5kJTIwYWJzdHJhY3R8ZW58MHx8fHwxNzkzMjM0Nzg2fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Dark abstract topographical ribbon mapping"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the 'Dark-First Utility DARK' personality. Do not inject blues, purples, or playful elements.",
+    "BANNED: All blues including navy, purple, indigo, violet. Use the defined #F97316 (Orange) and utility greens/reds.",
+    "Metrics must dominate. Use Barlow Condensed for all numbers (Fare, Distance, Score) and push sizes large (2xl to 4xl equivalent) for readability at arm's length.",
+    "Strict color coding: MATCH uses #22C55E (success), NO MATCH uses #EF4444 (error), REVIEW uses #EAB308 (warning). Use these exact tokens for status backgrounds and text.",
+    "Ensure touch targets are universally 48pt minimum. Forms (like the Preferences tab) should use stackable modular rows, not floating inline text boxes.",
+    "Do NOT use glassmorphism. This is a high-visibility utility. Rely on solid 'surfaceSecondary' cards and 1pt borders for depth.",
+    "For logos (Uber/Lyft), as clean transparent PNGs were not found, use a fallback: A solid black circle with white 'UBER' text (Inter/IBM font, weight 500) and a solid pink circle (#FF00BF) with white 'LYFT' text.",
+    "Bottom CTA layout: Ensure the primary action is fixed above the safe area bottom in a separate solid view so content scrolls underneath."
+  ]
+}
